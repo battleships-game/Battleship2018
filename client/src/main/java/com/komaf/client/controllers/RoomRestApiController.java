@@ -9,18 +9,22 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/room")
 public class RoomRestApiController {
 
+
+    static String url = "http://46.41.138.105:8085";
+
     @GetMapping("/getAll")
     @ResponseBody
     public List<Room> getRooms() {
 
         RestTemplate restTemplate = new RestTemplate();
-        List<Room> response = restTemplate.getForObject("http://localhost:8085/room/getAll",List.class);
+        List<Room> response = restTemplate.getForObject(url + "/room/getAll", List.class);
 
         return response;
     }
@@ -37,8 +41,8 @@ public class RoomRestApiController {
         map.add("name", playerName);
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
-
-        ResponseEntity<String> response = restTemplate.postForEntity( "http://localhost:8085/room/add", request , String.class );
+        System.out.printf(url);
+        ResponseEntity<String> response = restTemplate.postForEntity(url + "/room/add", request, String.class);
 
         if(response.getStatusCode().is2xxSuccessful())
             return "OK";
