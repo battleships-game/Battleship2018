@@ -1,15 +1,3 @@
-$(document).ready(function() {
-    var space = 1;
-    for (var r = 0; r < 10; r++) {
-        var col = "";
-        for (var c = 0; c < 10; c++) {
-            col += "<td data-pos='" + space + "'><div class='emptyField rounded field' fieldID=" + space + "'></div></td>";
-            space++;
-        }
-        $("#playersBoardTable").append("<tr>" + col + "</tr>");
-    }
-});
-
 $(document).on('click', "div.emptyField", function() {
         $(this).addClass("shipOn");
         $(this).removeClass("emptyField");
@@ -37,7 +25,7 @@ $(document).on('click', "button.submitBoard", function() {
     }).done(function( msg ) {
         if(msg=="OK"){
             alert("było ok");
-            //TODO ENABLE BUTTON PLAY GAME BUTTON
+            //TODO: ENABLE BUTTON PLAY GAME BUTTON
         }
     });
 });
@@ -56,7 +44,7 @@ $("#playGameButton").click(function() {
         context: document.body
     }).done(function( msg ) {
         if(msg=="OK"){
-            //TODO SWITCH TO PAGE GAMEPLAY vel BOARD
+            //TODO: SWITCH TO PAGE GAMEPLAY vel BOARD
         }
     });
 });
