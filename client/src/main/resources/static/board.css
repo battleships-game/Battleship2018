@@ -38,6 +38,30 @@ table {
     height: 60px; 
 }
 
+@media (max-width: 1350px) {
+    #playersBoardTable tr td {
+        width: 40px;
+        height: 40px;
+    }
+
+    #enemyBoardTable tr td {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 450px) {
+    #playersBoardTable tr td {
+        width: 30px;
+        height: 30px;
+    }
+
+    #enemyBoardTable tr td {
+        width: 30px;
+        height: 30px;
+    }
+}
+
 .boardWrapper {
     margin: 0 auto;
 }

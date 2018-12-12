@@ -25,6 +25,13 @@ table {
   height: 60px; 
 }
 
+@media (max-width: 800px) {
+    #playersBoardTable tr td {
+        width: 40px;
+        height: 40px;
+    }
+}
+
 .field{
     opacity: 0.85;
     border-style: solid;
