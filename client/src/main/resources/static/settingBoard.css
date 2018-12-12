@@ -1,0 +1,52 @@
+body {
+    background-image: url("img/leavingBay.jpg");
+    background-size: 100%;
+}
+
+table {
+  border-spacing: 0; 
+}
+
+#playersBoardTable {
+  margin: 0 auto;
+}
+
+#playersBoardTable tr td {
+  width: 60px; 
+  height: 60px; 
+}
+
+.field{
+    opacity: 0.85;
+    border-style: solid;
+    width: 100%;
+    height: 100%;
+}
+
+.emptyField {
+    background: white;
+}
+
+.titles {
+    margin-left: 40%;
+}
+
+.boards {
+    margin-top: 30px;
+}
+
+.opaqueBackground {
+    background: gray;
+    opacity: 0.85;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.buttons {
+    background: white;
+    opacity: 100%;
+}
+
+.shipOn{
+    background: orangered;
+}
