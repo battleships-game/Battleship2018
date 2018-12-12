@@ -1,6 +1,5 @@
 package com.komaf.client.controllers;
 
-import com.komaf.client.model.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +23,6 @@ public class FieldRestApiController {
     @ResponseBody
     public String fieldsSave(@ModelAttribute(value="jObject") List<Integer> myArray){
         if(myArray.size()==20) {
-//            board.setBoardList(myArray);
             return "OK";
         }
         else {

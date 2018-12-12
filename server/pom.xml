@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.komaf</groupId>
 	<artifactId>server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.5</version>
 	<packaging>jar</packaging>
 	<name>restServer</name>
 	<description>Bs-18 RestServer</description>
