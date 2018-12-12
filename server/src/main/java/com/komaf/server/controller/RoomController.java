@@ -32,15 +32,9 @@ public class RoomController {
         return roomRepository.getFreeRooms();
     }
 
-//    @PostMapping("/save")
-//    @RequestMapping(value = "/save", method = RequestMethod.POST)
-//    ResponseEntity<Room> saveRoom(@RequestBody String player) {
-//        return roomRepository.save(new Room(new Player(player)));
-//    }
-
-    @PostMapping("/")
-    ResponseEntity<Room> addRoom(@RequestBody Room newRoom) {
-        return roomRepository.save(newRoom);
+    @PostMapping("/add")
+    ResponseEntity<Room> addRoom(@RequestParam("name") String player) {
+        return roomRepository.save(new Room(new Player(player)));
     }
 
 }

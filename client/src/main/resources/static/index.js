@@ -6,44 +6,41 @@ $("#registerPlayerButton").click(function() {
     $("#registerPlayerButton").css("display", "none");
     $("#addNewRoomButton").prop('disabled', false);
     $("table.table").css("display", "table");
+    getAllRooms();
+});
+
+$("#addNewRoomButton").click(function() {
+    $.post( "http://localhost:8082/room/add", {name: $("#playersNameInput" ).val()}, function( msg ) {
+        if(msg=="OK") {
+            getAllRooms();
+        }
+    });
+});
+
+function getAllRooms() {
+    // var allRooms = null;
     $.ajax({
         url: "http://localhost:8082/room/getAll",
         dataType: 'json',
         context: document.body
-      }).done(function( msg ) {
-        for (i = 0; i < msg.length; i++) {
-            var playLabel = "<a href='setBoard'>Graj</a>";
-            if(msg[i].roomStatus=="OCCUPIED") playLabel = "<a>Zajęte</a>";
-            console.log(msg[i]._id+" "+msg[i].player1.name)
-
-            $("table.table").children("tbody").append("<tr>\n" +
-                "<th scope=\"row\">"+msg[i]._id+"</th>\n" +
-                "<td>"+msg[i].name+"</td>\n" +
-                "<td>"+msg[i].player1.name+"</td>\n" +
-                "<td></td>\n" +
-                "<td>"+playLabel+"</td>\n" +
-                "</tr>")
-        }
-    });
-});
-
-$("#addNewRoomButton").click(function() {
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:8082/room/add",
-        data: 'player='+$( "#playersNameInput" ).val(),
-        dataType: 'json',
-        context: document.body
     }).done(function( msg ) {
-        $("table.table").children("tbody").empty();
-        for (i = 0; i < msg.length; i++) {
-            $("table.table").children("tbody").append("<tr>\n" +
-                "<th scope=\"row\">"+msg[i].id+"</th>\n" +
-                "<td>"+msg[i].name+"</td>\n" +
-                "<td>"+msg[i].player+"</td>\n" +
-                "<td></td>\n" +
-                "<td><a href='setBoard'>Graj</td>\n" +
-                "</tr>")
-        }
+        addAllRooms(msg)
     });
-});
+}
+
+function addAllRooms(allRooms) {
+    $("table.table").children("tbody").empty();
+    for (i = 0; i < allRooms.length; i++) {
+        var playLabel = "<a href='setBoard'>Graj</a>";
+        if(allRooms[i].roomStatus=="OCCUPIED") playLabel = "<a>Zajęte</a>";
+        var player2name = "-";
+        if(allRooms[i].player2!=null) player2name = allRooms[i].player2.name;
+        $("table.table").children("tbody").append("<tr>\n" +
+            "<th scope=\"row\">"+allRooms[i]._id+"</th>\n" +
+            // "<td>"+allRooms[i].name+"</td>\n" +
+            "<td>"+allRooms[i].player1.name+"</td>\n" +
+            "<td>"+player2name+"</td>\n" +
+            "<td>"+playLabel+"</td>\n" +
+            "</tr>")
+    }
+}

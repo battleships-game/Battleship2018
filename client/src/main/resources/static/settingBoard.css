@@ -1,6 +1,15 @@
 body {
     background-image: url("img/leavingBay.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: 100%;
+    background-position: center top;
+}
+
+@media (max-width: 1450px) {
+    body {
+        background-size: auto 100%;
+    }
 }
 
 table {
@@ -37,7 +46,7 @@ table {
 
 .opaqueBackground {
     background: gray;
-    opacity: 0.85;
+    opacity: 0.9;
     padding-top: 20px;
     padding-bottom: 20px;
 }

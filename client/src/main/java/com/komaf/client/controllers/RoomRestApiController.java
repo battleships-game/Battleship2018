@@ -1,13 +1,14 @@
 package com.komaf.client.controllers;
 
-import com.komaf.client.model.player.Player;
 import com.komaf.client.model.room.Room;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -26,15 +27,23 @@ public class RoomRestApiController {
 
     @PostMapping("/add")
     @ResponseBody
-    public List<Room> addRoom(@RequestParam(name="player", required=false, defaultValue="Stranger") String player) {
+    public String addRoom(@RequestParam(name="name") String playerName) {
 
         RestTemplate restTemplate = new RestTemplate();
-        HashMap<String,String> params = new HashMap<>();
-        params.put("player",player);
-        restTemplate.postForObject("http://localhost:8085/room/save", player, List.class, params);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
-        List<Room> response = restTemplate.getForObject("http://localhost:8085/room/getAll",List.class);
-        return response;
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        map.add("name", playerName);
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+        ResponseEntity<String> response = restTemplate.postForEntity( "http://localhost:8085/room/add", request , String.class );
+
+        if(response.getStatusCode().is2xxSuccessful())
+            return "OK";
+        else
+            return "Bad";
     }
 
 }
