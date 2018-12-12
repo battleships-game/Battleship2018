@@ -4,35 +4,28 @@
 }
 
 body {
-    /*background: cornflowerblue;*/    
     background-image: url("img/board.jpg");
-    /*background-repeat: no-repeat;*/
     background-size: 100%;
 }
 
-table { 
-    /*border-collapse: collapse;*/ 
+table {
     border-spacing: 0; 
 }
 
-#chessboard { 
-    /*padding: 0px;*/ 
-    margin: 0 auto; 
-    /*border: 2px solid #181818;*/
+#playersBoardTable {
+    margin: 0 auto;
 }
 
-#chessboard tr td { 
+#playersBoardTable tr td {
     width: 60px; 
     height: 60px; 
 }
 
-#chessboard2 { 
-    /*padding: 0px;*/ 
-    margin: 0 auto; 
-    /*border: 2px solid #181818;*/ 
+#enemyBoardTable {
+    margin: 0 auto;
 }
 
-#chessboard2 tr td { 
+#enemyBoardTable tr td {
     width: 60px; 
     height: 60px; 
 }
@@ -43,7 +36,6 @@ table {
 
 .emptyField {
     background: white;
-    /*opacity: 0.9;*/
     border-style: solid;
     width: 100%;
     height: 100%;
@@ -51,7 +43,6 @@ table {
 
 .enemyField {
     background: white;
-    /*opacity: 0.85;*/
     border-style: solid;
     width: 100%;
     height: 100%;
@@ -68,7 +59,6 @@ table {
 .opaqueBackground {
     background: gray;
     opacity: 0.75;
-    /*margin: 20px;*/
     padding-top: 20px;
     padding-bottom: 20px;
 }
