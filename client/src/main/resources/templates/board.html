@@ -19,6 +19,13 @@
             <div class="container opaqueBackground rounded">
                 <div class="boardWrapper"><h3 class="titles">Player board</h3></div>
                 <table id='playersBoardTable'>
+                    <th:block th:each="i: ${#numbers.sequence(0, 9)}">
+                        <tr>
+                            <th:block th:each="j: ${#numbers.sequence(0, 9)}">
+                                <td th:data-pos="${10*i+j}"><div class='emptyField rounded field' th:fieldID="${10*i+j}"></div></td>
+                            </th:block>
+                        </tr>
+                    </th:block>
                 </table>
             </div>
         </div>
@@ -28,6 +35,13 @@
             <div class="container opaqueBackground rounded">
                 <div class="boardWrapper"><h3 class="titles">Enemy board</h3></div>
                 <table id='enemyBoardTable'>
+                    <th:block th:each="i: ${#numbers.sequence(0, 9)}">
+                        <tr>
+                            <th:block th:each="j: ${#numbers.sequence(0, 9)}">
+                                <td th:data-pos="${10*i+j}"><div class='enemyField rounded field' th:fieldID="${10*i+j}"></div></td>
+                            </th:block>
+                        </tr>
+                    </th:block>
                 </table>
             </div>
         </div>

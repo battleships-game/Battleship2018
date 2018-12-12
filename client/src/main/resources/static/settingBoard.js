@@ -33,7 +33,7 @@ $(document).on('click', "button.submitBoard", function() {
 $("#playGameButton").click(function() {
     var fields = new Array();
     $(".shipOn").each(function( index ) {
-        var dataPos = $(this).attr("fieldID");
+        var dataPos = $(this).attr("fieldid");
         fields.push(dataPos);
     });
     var jObject={};
