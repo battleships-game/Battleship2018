@@ -16,5 +16,11 @@ public class WebController {
         return "settingBoard";
     }
 
+    @RequestMapping(value = "/playGame", method = RequestMethod.GET)
+    public String setGameController() {
+        return "board";
+    }
+
+
 
 }
