@@ -33,9 +33,9 @@ o trafieniu „trafiony” lub „(trafiony) zatopiony”.
 >######*Wikipedia*
 
 ## Jak rozpocząć grę
-
-TODO:
-To start the game....
+1. Pobieramy skrypt ze strony : 46.41.138.105/demo.sh
+2. Otwieramy terminal i wpisujemy: chmod +x demo.sh
+3. Uruchamiamy skrypt: ./demo.sh
 
 ## Jak testować grę
 
