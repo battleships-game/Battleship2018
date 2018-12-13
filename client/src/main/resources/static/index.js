@@ -18,7 +18,6 @@ $("#addNewRoomButton").click(function() {
 });
 
 function getAllRooms() {
-    // var allRooms = null;
     $.ajax({
         url: "http://localhost:8082/room/getAll",
         dataType: 'json',
@@ -37,7 +36,6 @@ function addAllRooms(allRooms) {
         if(allRooms[i].player2!=null) player2name = allRooms[i].player2.name;
         $("table.table").children("tbody").append("<tr>\n" +
             "<th scope=\"row\">"+allRooms[i]._id+"</th>\n" +
-            // "<td>"+allRooms[i].name+"</td>\n" +
             "<td>"+allRooms[i].player1.name+"</td>\n" +
             "<td>"+player2name+"</td>\n" +
             "<td>"+playLabel+"</td>\n" +
