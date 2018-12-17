@@ -6,6 +6,7 @@
 
 .idea/
 *.iml
+.attach_pid*
 
 # CMake
 cmake-build-debug/
