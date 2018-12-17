@@ -1,16 +1,16 @@
 package com.komaf.server.domain.ship;
 
 import com.komaf.server.domain.exception.WrongShipTypeException;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
-@Test
+
 public class ShipTest {
-
+    @Test
     public void testCreateThreeMastShipBasedOnGivenPositions() throws WrongShipTypeException {
         List<Integer> positions = Arrays.asList(11,12,13);
         Ship ship = ShipFactory.createShipFromPositions(positions);
