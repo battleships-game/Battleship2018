@@ -1,6 +1,7 @@
 package com.komaf.client.controllers;
 
 import com.komaf.client.model.room.Room;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,8 +17,8 @@ import java.util.List;
 @RequestMapping("/room")
 public class RoomRestApiController {
 
-
-    static String url = "http://46.41.138.105:8085";
+    @Value("${service.url}")
+    private String url;
 
     @GetMapping("/getAll")
     @ResponseBody
