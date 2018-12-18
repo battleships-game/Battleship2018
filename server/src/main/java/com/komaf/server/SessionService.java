@@ -7,7 +7,7 @@ public class SessionService {
     public static void sessionFactory(HttpSession session)
     {
         session.setAttribute("playerId",null);
-        session.setAttribute("roomId",null);
+        session.setAttribute("gameId",null);
     }
 
 }
