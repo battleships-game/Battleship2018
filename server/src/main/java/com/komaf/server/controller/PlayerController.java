@@ -44,9 +44,9 @@ public class PlayerController {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).headers(headers).build();
     }
 
-    @GetMapping("/get")
-    Player getAllPlayers(@RequestParam("playerId") Integer playerId)
+    @RequestMapping(value="/get/{playerId}", method = RequestMethod.GET)
+    ResponseEntity<Player> getPlayers(@PathVariable("playerId") Integer playerId)
     {
-        return playerService.findByID(playerId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(playerService.findByID(playerId));
     }
 }

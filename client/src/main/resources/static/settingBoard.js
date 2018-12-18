@@ -9,20 +9,22 @@ $(document).on('click', "div.shipOn", function() {
 });
 
 $(document).on('click', "button.submitBoard", function() {
-    var fields = new Array();
+    var fields;
     $(".shipOn").each(function( index ) {
         var dataPos = $(this).attr("fieldID");
         console.log("datapos: "+dataPos);
-        fields.push(dataPos);
+        if(fields==null)
+            fields = dataPos;
+        else
+            fields = fields+","+dataPos;
     });
-    var jObject={};
-    jObject = JSON.stringify(fields);
 
     $.ajax({
-        url: "http://localhost:8080/fields/validate",
-        data : {jObject: jObject},
+        url: "http://localhost:8082/board/validate",
+        data : {jObject: fields},
         context: document.body
     }).done(function( msg ) {
+        console.log(msg);
         if(msg=="OK"){
             alert("było ok");
             //TODO: ENABLE BUTTON PLAY GAME BUTTON

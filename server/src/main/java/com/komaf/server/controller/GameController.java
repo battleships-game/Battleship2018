@@ -71,5 +71,13 @@ public class GameController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(gameService.findByPlayerId(playerId));
     }
 
+    @PostMapping("/checkGameByPlayer")
+    ResponseEntity<GameStatus> checkGameByPlayer(@RequestParam(value = "playerId", defaultValue = "-1") Integer playerId) {
+        int defaultValue = -1;
+        if (playerId == defaultValue) {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(gameService.findByPlayerId(playerId).getGameStatus());
+    }
 
 }

@@ -23,7 +23,7 @@ function playerRegisteredFollowings() {
 
 
 $("#addNewRoomButton").click(function() {
-    $.post( "http://localhost:8082/room/add", {name: $("#playersNameInput" ).val()}, function( msg ) {
+    $.post( "http://localhost:8082/game/add", {name: $("#playersNameInput" ).val()}, function( msg ) {
         if(msg.response=="OK") {
             // getAllRooms();
             window.location.href = "http://localhost:8082/waitingRoom";
@@ -33,7 +33,7 @@ $("#addNewRoomButton").click(function() {
 
 function getAllRooms() {
     $.ajax({
-        url: "http://localhost:8082/room/getAll",
+        url: "http://localhost:8082/game/getAll",
         dataType: 'json',
         context: document.body
     }).done(function( msg ) {

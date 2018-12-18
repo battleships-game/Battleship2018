@@ -14,13 +14,16 @@
 <div class="container mt-md-5 pt-md-4 pb-md-4 bg-light rounded mainContainer">
     <div><h3>Battle Ships - 2018</h3></div>
     <div class="row mt-md-5 mb-md-5">
-        <div class="input-group col-lg-6">
-            <input type="text" class="form-control" placeholder="Wpisz tu swoje imie" th:value="${name}" id="playersNameInput">
+        <!--<div class="input-group col-lg-6" th:if="${name==''}">-->
             <span id="playerRegisteredInfo" style="visibility: hidden;">Twój player: </span>
+            <input type="text" class="form-control" placeholder="Wpisz tu swoje imie" id="playersNameInput">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" id="registerPlayerButton">Grajże</button>
             </div>
-        </div>
+        <!--</div>
+        <div class="input-group col-lg-6" th:if="${name!=''}">
+            <span id="playerRegisteredInfo2" th:text="'Twój player: '+${name}"> </span>
+        </div>-->
         <div class="input-group-append col-lg-6">
             <button class="btn btn-outline-secondary" type="button" id="addNewRoomButton" disabled>Utwórz pokój</button>
         </div>
@@ -40,4 +43,5 @@
 </div>
 </body>
 <script src="index.js"></script>
+
 </html>

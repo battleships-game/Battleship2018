@@ -24,7 +24,8 @@ public class RestUtils {
         if(httpMethod.equals(HttpMethod.POST))
             response = restTemplate.postForEntity(url, request, String.class);
         else if(httpMethod.equals(HttpMethod.GET))
-            response = restTemplate.getForEntity(url,String.class,attributes);
+//            response = restTemplate.getForObject(url, ResponseEntity.class, map);
+            response = restTemplate.getForEntity(url, String.class);
 
         return response;
     }

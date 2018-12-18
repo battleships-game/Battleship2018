@@ -1,17 +1,11 @@
 package com.komaf.client.controllers;
 
 import com.komaf.client.model.StringResponse;
-import com.komaf.client.model.room.Room;
 import com.komaf.client.utils.CookieData;
 import com.komaf.client.utils.RestUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,14 +44,14 @@ public class PlayerRestApiController {
             return new StringResponse("Bad");
     }
 
-    @GetMapping("/getRoomId")
+    @GetMapping("/getGameId")
     @ResponseBody
-    public String getPlayersRoom() {
+    public String getPlayersGame() {
 
         Map<String,String> attributes = new HashMap<>();
         attributes.put("playerId", String.valueOf(CookieData.getPlayerId()));
         RestUtils restUtils = new RestUtils();
-        ResponseEntity<String> response = restUtils.sendRequest(attributes, url + "/game/findRoomByPlayer", HttpMethod.GET);
+        ResponseEntity<String> response = restUtils.sendRequest(attributes, url + "/game/findGameByPlayer", HttpMethod.GET);
         return response.toString();
     }
 

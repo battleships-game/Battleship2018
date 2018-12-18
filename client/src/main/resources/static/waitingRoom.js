@@ -6,8 +6,9 @@ $(document).ready(function() {
 function checkForOtherPlayer() {
   $.ajax({
    type: "GET",
-   url: "http://localhost:8082/room/wait",
+   url: "http://localhost:8082/gamegame/wait",
    success: function(msg){
+       console.log(msg)
        if(msg.response=="OK")
            goToGame();
    }

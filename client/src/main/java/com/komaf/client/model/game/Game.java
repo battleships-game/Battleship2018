@@ -1,4 +1,4 @@
-package com.komaf.client.model.room;
+package com.komaf.client.model.game;
 
 import com.komaf.client.model.player.Player;
 import lombok.AllArgsConstructor;
@@ -12,25 +12,25 @@ import java.util.concurrent.atomic.AtomicInteger;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Room {
+public class Game {
 
     private static final AtomicInteger count = new AtomicInteger(0);
     Integer _id;
     Player player1;
     Player player2;
-    RoomStatus roomStatus;
+    GameStatus roomStatus;
 
 
-    public Room(Player player1) {
+    public Game(Player player1) {
         this._id = count.incrementAndGet();
         this.player1 = player1;
-        this.roomStatus = RoomStatus.FREE;
+        this.roomStatus = GameStatus.FREE;
     }
 
-    public Room(Player player1, Player player2) {
+    public Game(Player player1, Player player2) {
         this._id = count.incrementAndGet();
         this.player1 = player1;
         this.player2 = player2;
-        this.roomStatus = RoomStatus.OCCUPIED;
+        this.roomStatus = GameStatus.OCCUPIED;
     }
 }

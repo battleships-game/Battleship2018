@@ -1,7 +1,7 @@
 package com.komaf.client.controllers;
 
 import com.komaf.client.model.StringResponse;
-import com.komaf.client.model.room.Room;
+import com.komaf.client.model.game.Game;
 import com.komaf.client.utils.CookieData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -12,30 +12,28 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
-@RequestMapping("/room")
-public class RoomRestApiController {
+@RequestMapping("/game")
+public class GameRestApiController {
 
     @Value("${service.url}")
     private String url;
 
     @GetMapping("/getAll")
     @ResponseBody
-    public List<Room> getRooms() {
+    public List<Game> getGames() {
 
         RestTemplate restTemplate = new RestTemplate();
-        List<Room> response = restTemplate.getForObject(url + "/game/getAll", List.class);
+        List<Game> response = restTemplate.getForObject(url + "/game/getAll", List.class);
 
         return response;
     }
 
     @PostMapping("/add")
     @ResponseBody
-    public StringResponse addRoom(@RequestParam(name="name") String playerName) {
+    public StringResponse addGame(@RequestParam(name="name") String playerName) {
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -56,9 +54,9 @@ public class RoomRestApiController {
 
     @GetMapping("/wait")
     @ResponseBody
-    public StringResponse waitInRoom() {
+    public StringResponse waitForGame() {
 
-//        return new StringResponse("DziałaRest");
+        if(CookieData.getPlayerId()==null) return new StringResponse("Error");
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -69,18 +67,19 @@ public class RoomRestApiController {
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
-        ResponseEntity<String> response = restTemplate.postForEntity(url + "/game/wait", request, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(url + "/game/checkGameByPlayer", request, String.class);
 
-        if(response.getStatusCode().is2xxSuccessful())
-            return new StringResponse("OK");
-        else
-            return new StringResponse("Bad");
-
+        return new StringResponse(response.getBody());
     }
 
+
+/*
+* @metoda do dołączenia do pokoju, jeszcze nie działa???
+*
+* */
     @GetMapping("/join")
     @ResponseBody
-    public StringResponse joinRoom() {
+    public StringResponse joinGame() {
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
