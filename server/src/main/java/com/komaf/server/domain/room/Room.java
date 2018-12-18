@@ -30,5 +30,13 @@ public class Room {
         this.player2 = player2;
         this.roomStatus = RoomStatus.OCCUPIED;
     }
-    //TODO: jaki jest sens tego konstruktora? kiedy będziemy uzywać jednego a kiedy drugiego?
+
+    public boolean addPlayer(Player player2)
+    {
+        if(this.roomStatus.equals(RoomStatus.OCCUPIED)) return false;
+        this.player2 = player2;
+        this.roomStatus = RoomStatus.OCCUPIED;
+        return true;
+    }
+
 }

@@ -25,7 +25,8 @@ function playerRegisteredFollowings() {
 $("#addNewRoomButton").click(function() {
     $.post( "http://localhost:8082/room/add", {name: $("#playersNameInput" ).val()}, function( msg ) {
         if(msg.response=="OK") {
-            getAllRooms();
+            // getAllRooms();
+            window.location.href = "http://localhost:8082/waitingRoom";
         }
     });
 });
@@ -43,12 +44,12 @@ function getAllRooms() {
 function addAllRooms(allRooms) {
     $("table.table").children("tbody").empty();
     for (i = 0; i < allRooms.length; i++) {
-        var playLabel = "<a href='setBoard'>Graj</a>";
+        var playLabel = "<a href='setBoard?r="+$.trim(allRooms[i].id)+"'>Graj</a>";
         if(allRooms[i].roomStatus=="OCCUPIED") playLabel = "<a>Zajęte</a>";
         var player2name = "-";
         if(allRooms[i].player2!=null) player2name = allRooms[i].player2.name;
         $("table.table").children("tbody").append("<tr>\n" +
-            "<th scope=\"row\">"+allRooms[i]._id+"</th>\n" +
+            "<th scope=\"row\">"+allRooms[i].id+"</th>\n" +
             // "<td>"+allRooms[i].name+"</td>\n" +
             "<td>"+allRooms[i].player1.name+"</td>\n" +
             "<td>"+player2name+"</td>\n" +

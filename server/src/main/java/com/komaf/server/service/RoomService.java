@@ -29,4 +29,12 @@ public class RoomService {
     public boolean save(Room room) {
         return roomRepository.save(room);
     }
+
+    public Room findByID(Integer roomId) {
+        return roomRepository.findAll().stream().filter(x->x.getId().equals(roomId)).findFirst().get();
+    }
+
+    public Room findByPLayerID(Integer playerId) {
+        return roomRepository.findAll().stream().filter(x->x.getPlayer1().getId().equals(playerId)).findFirst().get();
+    }
 }

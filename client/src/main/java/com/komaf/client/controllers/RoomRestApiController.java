@@ -54,4 +54,49 @@ public class RoomRestApiController {
             return new StringResponse("Bad");
     }
 
+    @GetMapping("/wait")
+    @ResponseBody
+    public StringResponse waitInRoom() {
+
+//        return new StringResponse("DziałaRest");
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        map.set("playerId", CookieData.getPlayerId().toString());
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+        ResponseEntity<String> response = restTemplate.postForEntity(url + "/room/wait", request, String.class);
+
+        if(response.getStatusCode().is2xxSuccessful())
+            return new StringResponse("OK");
+        else
+            return new StringResponse("Bad");
+
+    }
+
+    @GetMapping("/join")
+    @ResponseBody
+    public StringResponse joinRoom() {
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        map.set("playerId", CookieData.getPlayerId().toString());
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+        ResponseEntity<String> response = restTemplate.postForEntity(url + "/room/wait", request, String.class);
+
+        if(response.getStatusCode().is2xxSuccessful())
+            return new StringResponse("OK");
+        else
+            return new StringResponse("Bad");
+
+    }
 }
