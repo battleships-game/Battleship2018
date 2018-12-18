@@ -27,8 +27,6 @@ public class Board {
         this.availableShips = availableShips;
     }
 
-
-
     public boolean addShipToBoard(List<Integer> newShipPositions) {
         ShipType shipType;
         try {
@@ -37,9 +35,10 @@ public class Board {
             e.printStackTrace();
             return false;
         }
+        //TODO: przesunąć ten warunek do try/catch?
         if(checkIfShipTypeAvailableToAdd(shipType)) {
             Status fieldStatus = identifyFieldStatus(shipType);
-            newShipPositions.forEach(position -> fields.add(position, new Field(position,fieldStatus)));
+            newShipPositions.forEach(position -> fields.get(position).setStatus(fieldStatus));
             availableShips.remove(shipType);
             return true;
         }
@@ -47,7 +46,7 @@ public class Board {
     }
 
     private boolean checkIfShipTypeAvailableToAdd(ShipType shipType) {
-        return availableShips.stream().anyMatch(type -> shipType.equals(type));
+        return availableShips.stream().anyMatch(shipType::equals);
     }
 
     private Status identifyFieldStatus(ShipType shipType){

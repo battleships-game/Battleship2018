@@ -6,6 +6,13 @@ import java.util.List;
 
 public class ShipFactory {
 
+    private ShipFactory() {}
+
+    /**
+     * @param positions of ship
+     * @return Ship object
+     * @throws WrongShipTypeException
+     */
     public static Ship createShipFromPositions(List<Integer> positions) throws WrongShipTypeException {
         switch (positions.size()) {
             case 1:

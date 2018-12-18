@@ -9,8 +9,11 @@ import java.util.stream.IntStream;
 
 public class BoardFactory {
 
+    private BoardFactory() {}
+
     public static Board createEmptyBoard(Player player) {
         List<Field> emptyFields = new ArrayList<>();
+        //TODO: magic numbers! może dodać parametr w metodzie - int fieldMax?
         IntStream.range(1, 101).forEach(i-> emptyFields.add(new Field(i, Status.WATER)));
         return new Board(emptyFields, player, prepareAvailableShips());
     }
