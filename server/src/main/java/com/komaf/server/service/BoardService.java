@@ -41,6 +41,10 @@ public class BoardService {
         board.addShipToBoard(positions);
     }
 
+    public Board getBoardById(Integer id){
+       return boardRepository.findByID(id);
+    }
+
 
 
 }
