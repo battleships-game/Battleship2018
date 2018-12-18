@@ -11,23 +11,20 @@ import java.util.concurrent.atomic.AtomicInteger;
 @NoArgsConstructor
 @Getter
 @Setter
-public
-class Player {
+public class Player {
 
     private static final AtomicInteger count = new AtomicInteger(0);
+
     private Integer id;
-    String name;
+    private Integer boardId;
+    private String name;
 
     public Player(String name) {
         this.id = count.incrementAndGet();
         this.name = name;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
+    public void setBoardId(Integer boardId) {
+        this.boardId = boardId;
     }
 }
