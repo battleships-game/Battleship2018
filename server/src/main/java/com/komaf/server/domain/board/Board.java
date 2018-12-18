@@ -6,6 +6,7 @@ import com.komaf.server.domain.ship.ShipFactory;
 import com.komaf.server.domain.ship.ShipType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -14,13 +15,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Board {
+
     private static final AtomicInteger count = new AtomicInteger(0);
     private Integer id;
     private List<Field> fields;
     private List<ShipType> availableShips;
 
-    public Board(List<Field> fields, Player player, List<ShipType> availableShips) {
+    Board(List<Field> fields, Player player, List<ShipType> availableShips) {
         this.id = count.incrementAndGet();
         this.fields = fields;
         player.setBoardId(this.id);

@@ -21,9 +21,6 @@ public class RoomController {
     private final PlayerService playerService;
 
     @Autowired
-    private HttpSession session;
-
-    @Autowired
     public RoomController(RoomService roomService, PlayerService playerService) {
         this.roomService = roomService;
         this.playerService = playerService;
