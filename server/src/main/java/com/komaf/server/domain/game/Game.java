@@ -29,10 +29,9 @@ public class Game {
         this.player1 = player1;
         this.player2 = player2;
         this.gameStatus = GameStatus.READY;
-    }
+    } //TODO: uzywane tylko w testach - do usunięcia!
 
-    public boolean addPlayer(Player player2)
-    {
+    public boolean addPlayer(Player player2) {
         if(this.gameStatus.equals(GameStatus.READY)) return false;
         this.player2 = player2;
         this.gameStatus = GameStatus.READY;

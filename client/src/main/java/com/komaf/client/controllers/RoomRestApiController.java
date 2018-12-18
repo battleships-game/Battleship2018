@@ -28,7 +28,7 @@ public class RoomRestApiController {
     public List<Room> getRooms() {
 
         RestTemplate restTemplate = new RestTemplate();
-        List<Room> response = restTemplate.getForObject(url + "/room/getAll", List.class);
+        List<Room> response = restTemplate.getForObject(url + "/game/getAll", List.class);
 
         return response;
     }
@@ -46,7 +46,7 @@ public class RoomRestApiController {
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
-        ResponseEntity<String> response = restTemplate.postForEntity(url + "/room/add", request, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(url + "/game/add", request, String.class);
 
         if(response.getStatusCode().is2xxSuccessful())
             return new StringResponse("OK");
@@ -69,7 +69,7 @@ public class RoomRestApiController {
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
-        ResponseEntity<String> response = restTemplate.postForEntity(url + "/room/wait", request, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(url + "/game/wait", request, String.class);
 
         if(response.getStatusCode().is2xxSuccessful())
             return new StringResponse("OK");
@@ -91,7 +91,7 @@ public class RoomRestApiController {
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
-        ResponseEntity<String> response = restTemplate.postForEntity(url + "/room/wait", request, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(url + "/game/wait", request, String.class);
 
         if(response.getStatusCode().is2xxSuccessful())
             return new StringResponse("OK");

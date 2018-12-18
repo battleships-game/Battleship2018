@@ -22,13 +22,19 @@ public class GameRepository {
     }
 
     public boolean save(Game newGame) {
-        gameList.add(newGame);
-        return true;
+        return gameList.add(newGame);
     }
 
     public List<Game> getFreeGames() {
         return gameList.stream().filter(game -> game.getGameStatus()
                 .equals(GameStatus.WAIT_FOR_PLAYER))
                 .collect(Collectors.toList());
+    }
+
+    public Game findById(Integer gameId) {
+        return gameList.stream().filter(game -> game.getId()
+                .equals(gameId))
+                .findFirst()
+                .get();
     }
 }

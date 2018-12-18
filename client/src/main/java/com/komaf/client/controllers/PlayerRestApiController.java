@@ -57,7 +57,7 @@ public class PlayerRestApiController {
         Map<String,String> attributes = new HashMap<>();
         attributes.put("playerId", String.valueOf(CookieData.getPlayerId()));
         RestUtils restUtils = new RestUtils();
-        ResponseEntity<String> response = restUtils.sendRequest(attributes, url + "/room/findRoomByPlayer", HttpMethod.GET);
+        ResponseEntity<String> response = restUtils.sendRequest(attributes, url + "/game/findRoomByPlayer", HttpMethod.GET);
         return response.toString();
     }
 

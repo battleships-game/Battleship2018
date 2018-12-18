@@ -27,7 +27,7 @@ public class PlayerRepository {
     }
 
     public Player findByID(int playerId){
-        return playerList.stream().filter(x->x.getId()==playerId).findFirst().get();
+        return playerList.stream().filter(player -> player.getId()==playerId).findFirst().get();
     }
 
 }
