@@ -27,8 +27,8 @@ public class BoardRestApiController {
         RestUtils restUtils = new RestUtils();
         attributes.put("playerId", "1");//CookieData.getPlayerId().toString());
         attributes.put("positions", myArray.toString());
-        ResponseEntity<String> response = restUtils.sendRequest(attributes, url + "/board/placeShip", HttpMethod.POST);
-
+//        ResponseEntity<String> response = restUtils.sendRequest(attributes, url + "/board/placeShip", HttpMethod.POST);
+//TODO: zrobić tu rządanie PUT pod adres url + "/board/placeShip" które odczyta zwracaną wartość "ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();"
         //return response.toString();
 
         if(myArray.size()==20) {
