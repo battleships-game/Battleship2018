@@ -9,25 +9,26 @@ import java.util.concurrent.atomic.AtomicInteger;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Room{
+public class Room {
 
     private static final AtomicInteger count = new AtomicInteger(0);
-    Integer _id;
-    Player player1;
-    Player player2;
-    RoomStatus roomStatus;
+    private Integer id;
+    private Player player1;
+    private Player player2;
+    private RoomStatus roomStatus;
 
 
     public Room(Player player1) {
-        this._id = count.incrementAndGet();
+        this.id = count.incrementAndGet();
         this.player1 = player1;
         this.roomStatus = RoomStatus.FREE;
     }
 
     public Room(Player player1, Player player2) {
-        this._id = count.incrementAndGet();
+        this.id = count.incrementAndGet();
         this.player1 = player1;
         this.player2 = player2;
         this.roomStatus = RoomStatus.OCCUPIED;
     }
+    //TODO: jaki jest sens tego konstruktora? kiedy będziemy uzywać jednego a kiedy drugiego?
 }
