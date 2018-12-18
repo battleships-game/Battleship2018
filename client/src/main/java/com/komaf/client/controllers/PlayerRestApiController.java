@@ -50,4 +50,15 @@ public class PlayerRestApiController {
             return new StringResponse("Bad");
     }
 
+    @GetMapping("/getRoomId")
+    @ResponseBody
+    public String getPlayersRoom() {
+
+        Map<String,String> attributes = new HashMap<>();
+        attributes.put("playerId", String.valueOf(CookieData.getPlayerId()));
+        RestUtils restUtils = new RestUtils();
+        ResponseEntity<String> response = restUtils.sendRequest(attributes, url + "/room/findRoomByPlayer", HttpMethod.GET);
+        return response.toString();
+    }
+
 }

@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,13 +29,19 @@ public class WebController {
         return "index";
     }
 
-    @RequestMapping(value = "/setBoard", method = RequestMethod.GET)
-    public String setBoardController() {
+    @RequestMapping(value = "/waitingRoom", method = RequestMethod.GET)
+    public String setRoomController() {
+        return "room";
+    }
+
+    @RequestMapping(value = "/setBoard", params = { "r" }, method = RequestMethod.GET)
+    public String setBoard(@RequestParam("r") long roomId) {
+
         return "settingBoard";
     }
 
-    @RequestMapping(value = "/playGame", method = RequestMethod.GET)
-    public String setGameController() {
+    @RequestMapping(value = "/playGame/{roomId}", method = RequestMethod.GET)
+    public String setGameController(@PathVariable("roomId") int roomId) {
         return "board";
     }
 

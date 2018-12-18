@@ -20,9 +20,6 @@ public class PlayerController {
     private PlayerService playerService;
 
     @Autowired
-    private HttpSession session;
-
-    @Autowired
     public PlayerController(PlayerService playerService) {
         this.playerService = playerService;
     }
