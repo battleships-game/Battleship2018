@@ -9,7 +9,6 @@ import java.util.List;
 public class FieldRestApiController {
 
     @GetMapping("/validate")
-    @ResponseBody
     public String fieldsValidate(@ModelAttribute(value="jObject") List<List<String>> myArray){
         if(myArray.size()==20) {
             return "OK";
@@ -20,7 +19,6 @@ public class FieldRestApiController {
     }
 
     @GetMapping("/save")
-    @ResponseBody
     public String fieldsSave(@ModelAttribute(value="jObject") List<Integer> myArray){
         if(myArray.size()==20) {
             return "OK";

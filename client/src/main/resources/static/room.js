@@ -56,19 +56,3 @@ function addAllRooms(allRooms) {
             "</tr>")
     }
 }
-
-//TODO: wykorzystać tego intervala
-//$(document).ready(function() {
-//     setInterval("ajaxd()",10000);
-// });
-//
-// function ajaxd() {
-//   $.ajax({
-//    type: "GET",
-//    url: "newstitles.php",
-//    data: "user=success",
-//    success: function(msg){
-//      $(msg).appendTo("#edix");
-//    }
-//  });
-// }

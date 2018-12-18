@@ -25,9 +25,9 @@ public class RoomRepository {
         return roomList;
     }
 
-    public ResponseEntity<Room> save(Room newRoom) {
+    public boolean save(Room newRoom) {
         roomList.add(newRoom);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return true;
     }
 
     public List<Room> getFreeRooms() {

@@ -15,11 +15,19 @@ public
 class Player {
 
     private static final AtomicInteger count = new AtomicInteger(0);
-    private int _id;
+    private Integer id;
     String name;
 
     public Player(String name) {
-        this._id = count.incrementAndGet();
+        this.id = count.incrementAndGet();
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }
