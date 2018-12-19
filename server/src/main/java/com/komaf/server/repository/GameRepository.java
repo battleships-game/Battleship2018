@@ -1,5 +1,6 @@
 package com.komaf.server.repository;
 
+import com.komaf.server.domain.exception.GameNotFoundException;
 import com.komaf.server.domain.game.Game;
 import com.komaf.server.domain.game.GameStatus;
 import org.springframework.stereotype.Repository;
@@ -35,6 +36,6 @@ public class GameRepository {
         return gameList.stream().filter(game -> game.getId()
                 .equals(gameId))
                 .findFirst()
-                .get();
+                .orElseThrow(GameNotFoundException::new);
     }
 }

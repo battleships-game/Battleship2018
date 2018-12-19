@@ -30,11 +30,9 @@ public class PlayerController {
     }
 
     @PostMapping("/add")
-    ResponseEntity<Player> addPlayer(@CookieValue(value = "playerId", defaultValue = "-1") Long playerId, @RequestParam("name") String playerName,
-                                     HttpServletResponse response) {
-
+    ResponseEntity<Player> addPlayer(@CookieValue(value = "playerId", defaultValue = "-1") Long playerId,
+                                     @RequestParam("name") String playerName, HttpServletResponse response) {
         Player player = new Player(playerName);
-
         HttpHeaders headers = new HttpHeaders();
         headers.add("Set-Cookie","playerId="+player.getId());
 
@@ -44,9 +42,8 @@ public class PlayerController {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).headers(headers).build();
     }
 
-    @RequestMapping(value="/get/{playerId}", method = RequestMethod.GET)
-    ResponseEntity<Player> getPlayers(@PathVariable("playerId") Integer playerId)
-    {
+    @GetMapping(value="/get/{playerId}")
+    ResponseEntity<Player> getPlayer(@PathVariable("playerId") Integer playerId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(playerService.findByID(playerId));
     }
 }
