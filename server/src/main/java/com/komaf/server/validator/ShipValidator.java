@@ -1,6 +1,9 @@
 package com.komaf.server.validator;
 
-import com.komaf.server.domain.board.*;
+import com.komaf.server.domain.board.Board;
+import com.komaf.server.domain.board.Direction;
+import com.komaf.server.domain.board.DirectionChecker;
+import com.komaf.server.domain.board.Status;
 import com.komaf.server.domain.exception.FieldsOccupiedException;
 import com.komaf.server.domain.exception.ShipNotAddedException;
 import com.komaf.server.domain.exception.WrongPositionsException;
@@ -26,8 +29,8 @@ public class ShipValidator {
     public void validateIfNewShipInTheSameRow(List<Integer> positions, int boardDimension) {
         Direction direction = DirectionChecker.getDirectionOfNewShip(positions, boardDimension);
         if (direction == Direction.VERTICAL) {
-            int first = positions.get(0) - 1;
-            int last = positions.get(positions.size() - 1) - 1;
+            int first = positions.get(0);
+            int last = positions.get(positions.size() - 1);
             boolean areInTheSameRow = first / boardDimension == last / boardDimension;
             if (!areInTheSameRow) {
                 throw new WrongPositionsException();
@@ -43,7 +46,7 @@ public class ShipValidator {
     }
 
     public void checkIfPositionForNewShipAreWater(List<Integer> positions, Board board) {
-       boolean freeToAdd = positions.stream().allMatch(position -> board.getFields().get(position - 1).getStatus() == Status.WATER);
+       boolean freeToAdd = positions.stream().allMatch(position -> board.getFields().get(position).getStatus() == Status.WATER);
        if (!freeToAdd) {
            throw new FieldsOccupiedException();
        }
