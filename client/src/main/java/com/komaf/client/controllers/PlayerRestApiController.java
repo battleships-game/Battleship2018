@@ -46,8 +46,8 @@ public class PlayerRestApiController {
 
         if(response.getStatusCode().is2xxSuccessful())
             return new StringResponse("OK");
-        else
-            return new StringResponse("Bad");
+
+        return new StringResponse("Bad");
     }
 
 
