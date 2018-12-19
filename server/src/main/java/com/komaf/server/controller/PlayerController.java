@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -36,17 +34,16 @@ public class PlayerController {
         Player player = new Player(playerName);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Set-Cookie","playerId="+player.getId());
+        headers.add("Set-Cookie", "playerId=" + player.getId());
 
-        if(playerService.save(player))
+        if (playerService.save(player))
             return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
         else
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).headers(headers).build();
     }
 
-    @RequestMapping(value="/get/{playerId}", method = RequestMethod.GET)
-    ResponseEntity<Player> getPlayers(@PathVariable("playerId") Integer playerId)
-    {
+    @RequestMapping(value = "/get/{playerId}", method = RequestMethod.GET)
+    ResponseEntity<Player> getPlayers(@PathVariable("playerId") Integer playerId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(playerService.findByID(playerId));
     }
 }

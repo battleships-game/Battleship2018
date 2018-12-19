@@ -30,14 +30,13 @@ public class BoardRestApiController {
 
         Request request = new Request.Builder()
                 .url(url + "/board/placeShip")
-                .put(formBody) // PUT here.
+                .put(formBody)
                 .build();
 
         try {
             Response response = client.newCall(request).execute();
             if (response.isSuccessful()) return "OK";
             else return "Bad";
-            // Do something with the response.
         } catch (IOException e) {
             e.printStackTrace();
             return "Nie działa";

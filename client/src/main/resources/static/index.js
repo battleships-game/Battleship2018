@@ -45,7 +45,7 @@ function addAllRooms(allRooms) {
     $("table.table").children("tbody").empty();
     for (i = 0; i < allRooms.length; i++) {
         var playLabel = "<a href='setBoard?r="+$.trim(allRooms[i].id)+"'>Graj</a>";
-        if(allRooms[i].roomStatus=="OCCUPIED") playLabel = "<a>Zajęte</a>";
+        if(allRooms[i].gameStatus=="READY") playLabel = "<a>Zajęte</a>";
         var player2name = "-";
         if(allRooms[i].player2!=null) player2name = allRooms[i].player2.name;
         $("table.table").children("tbody").append("<tr>\n" +
@@ -57,19 +57,3 @@ function addAllRooms(allRooms) {
             "</tr>")
     }
 }
-
-//TODO: wykorzystać tego intervala
-//$(document).ready(function() {
-//     setInterval("ajaxd()",10000);
-// });
-//
-// function ajaxd() {
-//   $.ajax({
-//    type: "GET",
-//    url: "newstitles.php",
-//    data: "user=success",
-//    success: function(msg){
-//      $(msg).appendTo("#edix");
-//    }
-//  });
-// }
