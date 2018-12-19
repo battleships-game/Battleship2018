@@ -46,33 +46,17 @@ public class WebController {
         return "waitingRoom";
     }
 
-    @RequestMapping(value = "/setBoard", params = { "r" }, method = RequestMethod.GET)
-    public String setBoard(@RequestParam("r") long gameId) {
+    @RequestMapping(value = "/setBoard", method = RequestMethod.GET)
+    public String setBoard() {
+
 
         OkHttpClient client = new OkHttpClient();
 
         RequestBody formBody = new FormBody.Builder()
                 .add("playerId", CookieData.getPlayerId().toString())
-                .add("gameId", String.valueOf(gameId))
                 .build();
 
         Request request = new Request.Builder()
-                .url(url + "/game/join")
-                .post(formBody)
-                .build();
-
-        try {
-            Response response = client.newCall(request).execute();
-            System.out.println(response.body().string());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        formBody = new FormBody.Builder()
-                .add("playerId", CookieData.getPlayerId().toString())
-                .build();
-
-        request = new Request.Builder()
                 .url(url + "/board/init")
                 .post(formBody)
                 .build();
