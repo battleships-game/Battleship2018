@@ -24,7 +24,7 @@ public class ShipFactory {
             case 4:
                 return new Ship(positions, ShipType.IV_MAST);
             default:
-                throw new WrongShipTypeException("Exception: wrong number of position has been passed to create ship");
+                throw new WrongShipTypeException();
         }
     }
 }
