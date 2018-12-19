@@ -26,8 +26,8 @@ public class ShipValidator {
     public void validateIfNewShipInTheSameRow(List<Integer> positions, int boardDimension) {
         Direction direction = DirectionChecker.getDirectionOfNewShip(positions, boardDimension);
         if (direction == Direction.VERTICAL) {
-            int first = positions.get(0) - 1;
-            int last = positions.get(positions.size() - 1) - 1;
+            int first = positions.get(0);
+            int last = positions.get(positions.size() - 1);
             boolean areInTheSameRow = first / boardDimension == last / boardDimension;
             if (!areInTheSameRow) {
                 throw new WrongPositionsException();
