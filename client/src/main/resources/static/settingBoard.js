@@ -1,11 +1,14 @@
 $(document).ready(function() {
+    console.log("wysłało się żądanie");
     $.ajax({
         url: "http://localhost:8082/game/getGame",
         dataType: 'json',
         context: document.body
     }).done(function( msg ) {
+        console.log("wysłało się żądanie 8");
         $('#player1Name').text(msg.player1.name);
         $('#player2Name').text(msg.player2.name);
+        console.log("wysłało się żądanie 11");
     });
 });
 
