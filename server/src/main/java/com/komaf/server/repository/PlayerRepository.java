@@ -13,8 +13,6 @@ public class PlayerRepository {
 
     public PlayerRepository() {
         this.playerList = new ArrayList<>();
-        playerList.add(new Player("Paweł"));
-        playerList.add(new Player("Krzychu"));
     }
 
     public List<Player> findAll() {
