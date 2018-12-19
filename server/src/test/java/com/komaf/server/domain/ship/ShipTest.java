@@ -17,4 +17,25 @@ public class ShipTest {
         ShipType result = ship.getShipType();
         assertEquals(result, ShipType.III_MAST);
     }
+    @Test
+    public void testCreateOneMastShipBasedOnGivenPosition() throws WrongShipTypeException {
+        List<Integer> positions = Arrays.asList(2);
+        Ship ship = ShipFactory.createShipFromPositions(positions);
+        ShipType result = ship.getShipType();
+        assertEquals(result, ShipType.I_MAST);
+    }
+    @Test
+    public void testCreateTwoMastShipBasedOnGivenPosition() throws WrongShipTypeException {
+        List<Integer> positions = Arrays.asList(6,7);
+        Ship ship = ShipFactory.createShipFromPositions(positions);
+        ShipType result = ship.getShipType();
+        assertEquals(result, ShipType.II_MAST);
+    }
+    @Test
+    public void testCreateFourMastShipBasedOnGivenPosition() throws WrongShipTypeException {
+        List<Integer> positions = Arrays.asList(14,24,34,44);
+        Ship ship = ShipFactory.createShipFromPositions(positions);
+        ShipType result = ship.getShipType();
+        assertEquals(result, ShipType.IV_MAST);
+    }
 }
