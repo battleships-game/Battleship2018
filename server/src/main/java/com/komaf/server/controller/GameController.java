@@ -59,7 +59,8 @@ public class GameController {
         if (gameId == defaultValue) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(gameService.getGameStatusByGameId(gameId));
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(gameService.getGameStatusByGameId(gameId));
     }
 
     @PostMapping("/findGameByPlayer")
@@ -68,7 +69,8 @@ public class GameController {
         if (playerId == defaultValue) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(gameService.findByPlayerId(playerId));
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(gameService.findByPlayerId(playerId));
     }
 
     @PostMapping("/checkGameByPlayer")
@@ -77,7 +79,8 @@ public class GameController {
         if (playerId == defaultValue) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(gameService.findByPlayerId(playerId).getGameStatus());
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(gameService.findByPlayerId(playerId).getGameStatus());
     }
 
 }
