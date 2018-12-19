@@ -13,7 +13,7 @@ public class ShipFactory {
      * @return Ship object
      * @throws WrongShipTypeException
      */
-    public static Ship createShipFromPositions(List<Integer> positions) throws WrongShipTypeException {
+    public static Ship createShipFromPositions(List<Integer> positions) {
         switch (positions.size()) {
             case 1:
                 return new Ship(positions, ShipType.I_MAST);
@@ -24,7 +24,7 @@ public class ShipFactory {
             case 4:
                 return new Ship(positions, ShipType.IV_MAST);
             default:
-                throw new WrongShipTypeException("Exception: wrong number of position has been passed to create ship");
+                throw new WrongShipTypeException();
         }
     }
 }

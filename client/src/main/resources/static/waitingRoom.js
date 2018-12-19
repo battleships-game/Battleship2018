@@ -6,22 +6,11 @@ $(document).ready(function() {
 function checkForOtherPlayer() {
   $.ajax({
    type: "GET",
-   url: "http://localhost:8082/gamegame/wait",
+   url: "http://localhost:8082/game/checkForGame",
    success: function(msg){
        console.log(msg)
-       if(msg.response=="OK")
-           goToGame();
+       if(msg.response=="READY")
+           window.location.href = "http://localhost:8082/setBoard";
    }
  });
-}
-
-function goToGame() {
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:8082/player/getRoomId",
-        success: function(msg){
-            window.location.href = "http://localhost:8082/setBoard?r="+msg.id;
-        }
-    });
-
 }
