@@ -1,6 +1,8 @@
 package com.komaf.server.controller;
 
 import com.komaf.server.domain.board.Board;
+import com.komaf.server.domain.exception.WrongPositionsException;
+import com.komaf.server.domain.exception.WrongShipTypeException;
 import com.komaf.server.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -34,10 +36,7 @@ public class BoardController {
 
     @PutMapping("/placeShip")
     ResponseEntity putShipOnBoard(@RequestParam(value="playerId", defaultValue = "-1") Integer playerId, @RequestParam(value = "positions") List<Integer> positions){
-        boardService.setShipOnBoard(playerId, positions);
-        HttpHeaders headers = new HttpHeaders();
-        return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
-
+        return boardService.setShipOnBoard(playerId, positions);
     }
 
     @GetMapping("/{id}")
