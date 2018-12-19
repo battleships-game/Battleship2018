@@ -37,8 +37,12 @@ $(document).on('click', "button.submitBoard", function() {
     }).done(function( msg ) {
         console.log(msg);
         if(msg=="OK"){
-            alert("było ok");
+            alert("Statek zostanie dodany do planszy");
             updateShips();
+        }
+        else
+        {
+            alert("W tym przypadku statek nie może zostać utworzony");
         }
     });
 });
