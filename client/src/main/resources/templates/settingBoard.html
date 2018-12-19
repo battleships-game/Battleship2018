@@ -16,7 +16,7 @@
     <div class="col-lg-12">
         <div class="mx-auto" id="chessdiv">
             <div class="container opaqueBackground rounded">
-                <div class="boardWrapper"><h3 class="titles">Player board</h3></div>
+                <div class="boardWrapper"><h3 class="titles">Plansza gracza:</h3></div>
                 <table id='playersBoardTable'>
                     <th:block th:each="i: ${#numbers.sequence(0, 9)}">
                         <tr>
@@ -26,6 +26,12 @@
                         </tr>
                     </th:block>
                 </table>
+                <div class="row mt-md-5 mb-md-5 font-weight-bold text-white text-center">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-2">Gracz 1:</div><div class="col-lg-2" id="player1Name"></div>
+                    <div class="col-lg-2">Gracz 2:</div><div class="col-lg-2" id="player2Name"></div>
+                    <div class="col-lg-2"></div>
+                </div>
                 <div class="row mt-md-5 mb-md-5">
                     <div class="input-group-append mx-auto">
                         <button class="titles btn btn-outline-secondary buttons submitBoard">Zatwierdź statek</button>

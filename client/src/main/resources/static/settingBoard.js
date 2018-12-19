@@ -1,3 +1,14 @@
+$(document).ready(function() {
+    $.ajax({
+        url: "http://localhost:8082/game/getGame",
+        dataType: 'json',
+        context: document.body
+    }).done(function( msg ) {
+        $('#player1Name').text(msg.player1.name);
+        $('#player2Name').text(msg.player2.name);
+    });
+});
+
 $(document).on('click', "div.emptyField", function() {
         $(this).addClass("shipOn");
         $(this).removeClass("emptyField");

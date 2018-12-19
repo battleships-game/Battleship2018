@@ -7,7 +7,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-class Field {
+public class Field {
     private Integer position;
     private Status status;
 }

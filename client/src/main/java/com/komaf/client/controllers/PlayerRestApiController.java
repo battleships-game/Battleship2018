@@ -3,9 +3,15 @@ package com.komaf.client.controllers;
 import com.komaf.client.model.StringResponse;
 import com.komaf.client.utils.CookieData;
 import com.komaf.client.utils.RestUtils;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,15 +50,7 @@ public class PlayerRestApiController {
             return new StringResponse("Bad");
     }
 
-    @GetMapping("/getGameId")
-    @ResponseBody
-    public String getPlayersGame() {
 
-        Map<String,String> attributes = new HashMap<>();
-        attributes.put("playerId", String.valueOf(CookieData.getPlayerId()));
-        RestUtils restUtils = new RestUtils();
-        ResponseEntity<String> response = restUtils.sendRequest(attributes, url + "/game/findGameByPlayer", HttpMethod.GET);
-        return response.toString();
-    }
+
 
 }

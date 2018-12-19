@@ -77,7 +77,6 @@ public class GameRestApiController {
         return new StringResponse(responseString);
     }
 
-
 /*
 * @metoda do dołączenia do pokoju, jeszcze nie działa???
 *
@@ -85,7 +84,6 @@ public class GameRestApiController {
     @PostMapping("/join")
     @ResponseBody
     public StringResponse joinGame(@RequestParam(value = "gameId") String gameId) {
-
 
         OkHttpClient client = new OkHttpClient();
 
@@ -108,6 +106,29 @@ public class GameRestApiController {
             e.printStackTrace();
             return new StringResponse("Nie działa");
         }
+    }
+
+
+    @GetMapping("/getGame")
+    @ResponseBody
+    public String getPlayersGame() {
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        map.set("playerId", "1");
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+        ResponseEntity<String> response = restTemplate.postForEntity(url + "/game/findGameByPlayer", request, String.class);
+//        String responseString = response.getBody().replace("\"","");
+
+        return response.getBody();
 
     }
+
+
+
 }
