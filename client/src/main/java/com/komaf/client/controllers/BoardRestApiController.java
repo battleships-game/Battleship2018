@@ -1,17 +1,15 @@
 package com.komaf.client.controllers;
 
 import com.komaf.client.utils.CookieData;
-import com.komaf.client.utils.RestUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.HttpPut;
+import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/board")
@@ -21,30 +19,37 @@ public class BoardRestApiController {
     private String url;
 
     @GetMapping("/validate")
-    public String fieldsValidate(@ModelAttribute(value="jObject") List<String> myArray){
+    public String fieldsValidate(@ModelAttribute(value = "jObject") List<String> myArray) {
 
-        Map<String,String> attributes = new HashMap<>();
-        RestUtils restUtils = new RestUtils();
-        attributes.put("playerId", "1");//CookieData.getPlayerId().toString());
-        attributes.put("positions", myArray.toString());
-//        ResponseEntity<String> response = restUtils.sendRequest(attributes, url + "/board/placeShip", HttpMethod.POST);
-//TODO: zrobić tu rządanie PUT pod adres url + "/board/placeShip" które odczyta zwracaną wartość "ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();"
-        //return response.toString();
+        OkHttpClient client = new OkHttpClient();
+        if (CookieData.getPlayerId() == null) return "Zarejestruj najpierw gracza";
+        RequestBody formBody = new FormBody.Builder()
+                .add("playerId", CookieData.getPlayerId().toString())
+                .add("positions", myArray.toString().replace("[", "").replace("]", ""))
+                .build();
 
-        if(myArray.size()==20) {
-            return "OK";
+        Request request = new Request.Builder()
+                .url(url + "/board/placeShip")
+                .put(formBody) // PUT here.
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+            if (response.isSuccessful()) return "OK";
+            else return "Bad";
+            // Do something with the response.
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Nie działa";
         }
-        else {
-            return "Bad";
-        }
+
     }
 
     @GetMapping("/save")
-    public String fieldsSave(@ModelAttribute(value="jObject") List<Integer> myArray){
-        if(myArray.size()==20) {
+    public String fieldsSave(@ModelAttribute(value = "jObject") List<Integer> myArray) {
+        if (myArray.size() == 20) {
             return "OK";
-        }
-        else {
+        } else {
             return "Bad";
         }
     }

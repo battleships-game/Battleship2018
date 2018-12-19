@@ -2,6 +2,8 @@ package com.komaf.client.controllers;
 
 import com.komaf.client.utils.CookieData;
 import com.komaf.client.utils.RestUtils;
+import okhttp3.*;
+import okhttp3.RequestBody;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +47,27 @@ public class WebController {
     }
 
     @RequestMapping(value = "/setBoard", params = { "r" }, method = RequestMethod.GET)
-    public String setBoard(@RequestParam("r") long roomId) {
+    public String setBoard(@RequestParam("r") long gameId) {
+
+
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("playerId", CookieData.getPlayerId().toString())
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url + "/board/init")
+                .post(formBody) // PUT here.
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+            System.out.println(response.body().string());
+            // Do something with the response.
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return "settingBoard";
     }
