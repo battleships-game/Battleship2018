@@ -66,3 +66,8 @@ table {
 .shipOn{
     background: orangered;
 }
+
+.shipFixed{
+    background-image: url("img/ship.png");
+    background-size: 100% 100%;
+}

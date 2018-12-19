@@ -31,10 +31,11 @@ public class PlayerController {
     ResponseEntity<Player> addPlayer(@CookieValue(value = "playerId", defaultValue = "-1") Long playerId,
                                      @RequestParam("name") String playerName, HttpServletResponse response) {
         Player player = new Player(playerName);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Set-Cookie","playerId="+player.getId());
 
-        if(playerService.save(player))
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Set-Cookie", "playerId=" + player.getId());
+
+        if (playerService.save(player))
             return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
 
         return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).headers(headers).build();

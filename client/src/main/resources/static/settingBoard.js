@@ -27,10 +27,19 @@ $(document).on('click', "button.submitBoard", function() {
         console.log(msg);
         if(msg=="OK"){
             alert("było ok");
-            //TODO: ENABLE BUTTON PLAY GAME BUTTON
+            updateShips();
         }
     });
 });
+
+function updateShips () {
+    $(".shipOn").each(function( index ) {
+        $(this).removeClass("shipOn");
+        $(this).addClass("shipFixed");
+    });
+}
+
+
 
 $("#playGameButton").click(function() {
     var fields = new Array();
