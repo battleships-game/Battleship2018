@@ -1,0 +1,16 @@
+#!/bin/bash
+
+file_time=$(( `date +%s` - `stat -L --format %Y $'server-0.5.jar'` ))
+if [[ file_time -lt 300 ]]; then
+        echo mniejsze >> log
+        if [[ $(fuser 8085/tcp) = "" ]]; then
+                echo Nie zabito aplikacji >> logdeploy.txt
+        else fuser -k 8085/tcp
+                echo Zabito aplikacje >> logdeploy.txt
+        fi
+  java -jar server-0.5.jar > lastDeployLog
+  now=$(date +"%Y-%m-%d %H:%M:%S")
+  echo "Dokonano uruchomienia aplikacji $now " >> logdeploy.txt
+fi
+
+
