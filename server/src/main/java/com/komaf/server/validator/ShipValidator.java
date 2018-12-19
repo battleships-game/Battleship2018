@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class ShipValidator {
     public void checkIfShipInBoard(List<Integer> positions, Board board) {
-        boolean isShipInBoard = positions.stream().allMatch(position -> position > 0 && position <= board.getBoardSize());
+        boolean isShipInBoard = positions.stream().allMatch(position -> position >= 0 && position <= board.getBoardSize());
         if (!isShipInBoard) {
             throw new WrongPositionsException();
         }
