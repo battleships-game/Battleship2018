@@ -1,5 +1,6 @@
 package com.komaf.server.repository;
 
+import com.komaf.server.domain.exception.PlayerNotFoundException;
 import com.komaf.server.domain.player.Player;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +28,10 @@ public class PlayerRepository {
     }
 
     public Player findByID(int playerId){
-        return playerList.stream().filter(player -> player.getId()==playerId).findFirst().get();
+        return playerList.stream()
+                .filter(player -> player.getId()==playerId)
+                .findFirst()
+                .orElseThrow(PlayerNotFoundException::new);
     }
 
 }

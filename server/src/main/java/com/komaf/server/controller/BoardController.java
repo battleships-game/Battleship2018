@@ -25,10 +25,11 @@ public class BoardController {
     @PostMapping("/init")
     ResponseEntity initializeBoard(@RequestParam(value = "playerId", defaultValue = "-1") Integer playerId) {
         HttpHeaders headers = new HttpHeaders();
-        if(boardService.initializeBoard(playerId))
-            return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
-        else
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).headers(headers).build();
+        if(boardService.initializeBoard(playerId)) return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .headers(headers)
+                .build();
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).headers(headers).build();
     }
 
     @PutMapping("/placeShip")

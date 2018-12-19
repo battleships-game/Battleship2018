@@ -38,11 +38,19 @@ public class GameService {
     }
 
     public Game findById(Integer gameId) {
-        return gameRepository.findAll().stream().filter(x->x.getId().equals(gameId)).findFirst().get();
+        return gameRepository.findAll()
+                .stream()
+                .filter(x->x.getId().equals(gameId))
+                .findFirst()
+                .get();
     }
 
     public Game findByPlayerId(Integer playerId) {
-        return gameRepository.findAll().stream().filter(x->x.getPlayer1().getId().equals(playerId)).findFirst().get();
+        return gameRepository.findAll()
+                .stream()
+                .filter(x->x.getPlayer1().getId().equals(playerId))
+                .findFirst()
+                .get();
     }
 
     public boolean joinGameByPlayer(Integer playerId, Integer gameId) {

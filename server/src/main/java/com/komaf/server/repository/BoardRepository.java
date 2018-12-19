@@ -20,7 +20,11 @@ public class BoardRepository{
     }
 
     public Board findByID(int boardId){
-        return boardList.stream().filter(x->x.getId()==boardId).findFirst().get();
+        return boardList
+                .stream()
+                .filter(x->x.getId()==boardId)
+                .findFirst()
+                .get();
     }
 
 }
