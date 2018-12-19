@@ -118,7 +118,7 @@ public class GameRestApiController {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
-        map.set("playerId", "1");
+        map.set("playerId", CookieData.getPlayerId().toString());
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
