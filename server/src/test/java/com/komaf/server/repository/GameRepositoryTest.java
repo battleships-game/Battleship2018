@@ -2,10 +2,11 @@ package com.komaf.server.repository;
 
 import com.komaf.server.domain.game.Game;
 import com.komaf.server.domain.player.Player;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class GameRepositoryTest {
@@ -15,7 +16,7 @@ public class GameRepositoryTest {
         int expected = 0;
         List<Game> games = gameRepository.getFreeGames();
 
-        Assert.assertEquals(games.size(), expected);
+        assertEquals(games.size(), expected);
     }
     @Test
     public void checkIfSaveMethodAddNewGamesToEmptyGameRepository() {
@@ -28,7 +29,7 @@ public class GameRepositoryTest {
         gameRepository.save(gameTwo);
 
         List<Game> games = gameRepository.findAll();
-        Assert.assertEquals(games.size(), expected);
+        assertEquals(games.size(), expected);
     }
     @Test
     public void checkIfGameRepositoryWithTwoGamesReturnListOfFreeGamesWithTwoGames() {
@@ -41,7 +42,7 @@ public class GameRepositoryTest {
         gameRepository.save(gameTwo);
 
         List<Game> games = gameRepository.getFreeGames();
-        Assert.assertEquals(games.size(), expected);
+        assertEquals(games.size(), expected);
     }
     @Test
     public void checkIfGameRepositoryWithOneFreeAndOneOccupiedGameReturnListOfFreeGamesWithOneGame() {
@@ -54,7 +55,7 @@ public class GameRepositoryTest {
         gameRepository.save(gameTwo);
 
         List<Game> games = gameRepository.getFreeGames();
-        Assert.assertEquals(games.size(), expected);
+        assertEquals(games.size(), expected);
     }
     @Test
     public void checkIfGameRepositoryWithTwoOccupiedGamesReturnEmptyListOfFreeGames() {
@@ -67,6 +68,14 @@ public class GameRepositoryTest {
         gameRepository.save(gameTwo);
 
         List<Game> games = gameRepository.getFreeGames();
-        Assert.assertEquals(games.size(), expected);
+        assertEquals(games.size(), expected);
+    }
+    @Test
+    public void shouldReturnGameWithChooseId(){
+        GameRepository gameRepository = new GameRepository();
+        Game game = new Game(new Player("Janusz"), new Player("Kunegunda"));
+        gameRepository.save(game);
+        Game getGameById = gameRepository.findById(game.getId());
+        assertEquals(getGameById, game);
     }
 }
