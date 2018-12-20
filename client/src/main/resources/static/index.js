@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    setInterval("getAllRooms()",5000);
+});
+
 $("#registerPlayerButton").click(function() {
     registerPlayer();
     getAllRooms();
@@ -32,6 +36,7 @@ $("#addNewRoomButton").click(function() {
 });
 
 function getAllRooms() {
+    console.log("Pobieramy pokoje");
     $.ajax({
         url: "http://localhost:8082/game/getAll",
         dataType: 'json',
