@@ -8,7 +8,7 @@ $("#registerPlayerButton").click(function() {
 });
 
 function registerPlayer() {
-    $.post("http://localhost:8082/player/add", {name: $("#playersNameInput").val()}, function (msg) {
+    $.post("player/add", {name: $("#playersNameInput").val()}, function (msg) {
         if (msg.response == "OK") {
             playerRegisteredFollowings();
         }
@@ -27,10 +27,10 @@ function playerRegisteredFollowings() {
 
 
 $("#addNewRoomButton").click(function() {
-    $.post( "http://localhost:8082/game/add", {name: $("#playersNameInput" ).val()}, function( msg ) {
+    $.post( "game/add", {name: $("#playersNameInput" ).val()}, function( msg ) {
         if(msg.response=="OK") {
             // getAllRooms();
-            window.location.href = "http://localhost:8082/waitingRoom";
+            window.location.href = "waitingRoom";
         }
     });
 });
@@ -38,7 +38,7 @@ $("#addNewRoomButton").click(function() {
 function getAllRooms() {
     console.log("Pobieramy pokoje");
     $.ajax({
-        url: "http://localhost:8082/game/getAll",
+        url: "game/getAll",
         dataType: 'json',
         context: document.body
     }).done(function( msg ) {
@@ -49,14 +49,13 @@ function getAllRooms() {
 function addAllRooms(allRooms) {
     $("table.table").children("tbody").empty();
     for (i = 0; i < allRooms.length; i++) {
-        // var playLabel = "<a href='setBoard?r="+$.trim(allRooms[i].id)+"'>Graj</a>";
         var playLabel = '<button class="btn btn-outline-secondary" type="button" onclick="play('+$.trim(allRooms[i].id)+')">Graj</button>';
         if(allRooms[i].gameStatus=="READY") playLabel = "<a>Zajęte</a>";
         var player2name = "-";
-        if(allRooms[i].player2!=null) player2name = allRooms[i].player2.name;
+        if(allRooms[i].playerList[1]!=null) player2name = allRooms[i].playerList[1].name;
         $("table.table").children("tbody").append("<tr>\n" +
             "<th scope=\"row\">"+allRooms[i].id+"</th>\n" +
-            "<td>"+allRooms[i].player1.name+"</td>\n" +
+            "<td>"+allRooms[i].playerList[0].name+"</td>\n" +
             "<td>"+player2name+"</td>\n" +
             "<td>"+playLabel+"</td>\n" +
             "</tr>")
@@ -65,9 +64,9 @@ function addAllRooms(allRooms) {
 
 function play(gameIdParam)
 {
-    $.post( "http://localhost:8082/game/join", {gameId: gameIdParam}, function( msg ) {
+    $.post( "game/join", {gameId: gameIdParam}, function( msg ) {
         if(msg.response=="OK") {
-            window.location.href = "http://localhost:8082/setBoard";
+            window.location.href = "setBoard";
         }
         else
         {

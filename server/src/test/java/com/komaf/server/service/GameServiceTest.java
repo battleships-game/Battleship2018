@@ -67,6 +67,7 @@ public class GameServiceTest {
         Game game1 = gameService.findById(game.getId());
         assertEquals(game,game1);
     }
+
     @Test
     public void shouldReturnGameByPlayerId(){
         GameService gameService = new GameService(gameRepository, playerRepository);
@@ -75,6 +76,32 @@ public class GameServiceTest {
         gameRepository.save(game);
         Game game1 = gameService.findByPlayerId(player.getId());
         assertEquals(game, game1);
+    }
+
+    @Test
+    public void shouldReturnGameByPlayerId2(){
+        GameService gameService = new GameService(gameRepository, playerRepository);
+        Player player = new Player("Mikołaj");
+        Player player2 = new Player("Mikołaj");
+        Game game = new Game(player,player2);
+        gameRepository.save(game);
+        Game game1 = gameService.findByPlayerId(player.getId());
+        assertEquals(game, game1);
+    }
+
+    @Test
+    public void shouldReturnGameByPlayerId3(){
+        GameService gameService = new GameService(gameRepository, playerRepository);
+        Player player = new Player("Mikołaj");
+        Player player2 = new Player("Mikołaj2");
+        Game game = new Game(player, player2);
+        Player player3 = new Player("Mikołaj3");
+        Player player4 = new Player("Mikołaj4");
+        Game game2 = new Game(player3, player4);
+        gameRepository.save(game);
+        gameRepository.save(game2);
+        Game game1 = gameService.findByPlayerId(player3.getId());
+        assertEquals(game2, game1);
     }
 
 }

@@ -1,14 +1,11 @@
 $(document).ready(function() {
-    console.log("wysłało się żądanie");
     $.ajax({
-        url: "http://localhost:8082/game/getGame",
+        url: "game/getGame",
         dataType: 'json',
         context: document.body
     }).done(function( msg ) {
-        console.log("wysłało się żądanie 8");
-        $('#player1Name').text(msg.player1.name);
-        $('#player2Name').text(msg.player2.name);
-        console.log("wysłało się żądanie 11");
+        $('#player1Name').text(msg.playerList[0].name);
+        $('#player2Name').text(msg.playerList[1].name);
     });
 });
 
@@ -34,7 +31,7 @@ $(document).on('click', "button.submitBoard", function() {
     });
 
     $.ajax({
-        url: "http://localhost:8082/board/validate",
+        url: "board/validate",
         data : {jObject: fields},
         context: document.body
     }).done(function( msg ) {
@@ -68,7 +65,7 @@ $("#playGameButton").click(function() {
     var jObject={};
     jObject = JSON.stringify(fields);
     $.ajax({
-        url: "http://localhost:8080/fields/save",
+        url: "fields/save",
         data : {jObject: jObject},
         context: document.body
     }).done(function( msg ) {

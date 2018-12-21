@@ -48,7 +48,7 @@ public class GameService {
     public Game findByPlayerId(Integer playerId) {
         return gameRepository.findAll()
                 .stream()
-                .filter(x->(x.getPlayer1().getId().equals(playerId)||x.getPlayer2().getId().equals(playerId)))
+                .filter(x->x.getPlayerList().stream().filter(y->y.getId().equals(playerId)).count()>0)
                 .findFirst()
                 .get();
     }
